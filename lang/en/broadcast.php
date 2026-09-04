@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'campaign_created' => 'Campaign created successfully.',
+    'campaign_updated' => 'Campaign updated successfully.',
+    'campaign_deleted' => 'Campaign deleted successfully.',
+    'campaign_duplicated' => 'Campaign duplicated successfully.',
+    'campaign_scheduled' => 'Campaign scheduled successfully.',
+    'campaign_paused' => 'Campaign paused successfully.',
+    'campaign_resumed' => 'Campaign resumed successfully.',
+    'campaign_cancelled' => 'Campaign cancelled successfully.',
+    'campaign_archived' => 'Campaign archived successfully.',
+    'template_created' => 'Template created successfully.',
+    'template_updated' => 'Template updated successfully.',
+    'template_deleted' => 'Template deleted successfully.',
+    'templates_synced' => '{count} template(s) synced from Meta.',
+    'cannot_schedule' => 'Only draft campaigns can be scheduled.',
+    'cannot_pause' => 'Only running campaigns can be paused.',
+    'cannot_resume' => 'Only paused campaigns can be resumed.',
+    'cannot_cancel' => 'Cannot cancel a campaign that has already completed.',
+    'no_facebook_account' => 'No connected WhatsApp account found.',
+    'no_waba_id' => 'WABA ID is not set.',
+    'no_phone_number' => 'Customer has no phone number.',
+    'missing_template_or_content' => 'Campaign must have a template or message content.',
+    'missing_recipient_filter' => 'Campaign must have a recipient filter defined.',
+    'max_concurrent' => 'Maximum number of concurrent campaigns reached.',
+];

@@ -1,0 +1,18 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - config/
+        - database/
+        - routes/
+
+    level: 8
+
+    excludePaths:
+        - app/Providers/*.php
+
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: false

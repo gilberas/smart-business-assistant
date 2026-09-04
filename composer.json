@@ -1,0 +1,155 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "smart-business/business-whatsapp-assistant",
+    "type": "project",
+    "description": "Business WhatsApp AI Assistant — multi-tenant AI-powered communication platform.",
+    "keywords": [
+        "whatsapp",
+        "ai",
+        "saas",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "laravel/framework": "^13.17",
+        "laravel/sanctum": "^4.3",
+        "laravel/tinker": "^3.0",
+        "predis/predis": "^2.0|^3.0",
+        "resend/resend-laravel": "^1.4",
+        "spatie/laravel-permission": "^8.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.7",
+        "fakerphp/faker": "^1.24",
+        "larastan/larastan": "^3.9",
+        "laravel/pail": "^1.2.5",
+        "laravel/pint": "^1.27",
+        "laravel/sail": "^1.53",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.9.3",
+        "pestphp/pest": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "App\\Actions\\": "app/Actions/",
+            "App\\Contracts\\": "app/Contracts/",
+            "App\\DTOs\\": "app/DTOs/",
+            "App\\Enums\\": "app/Enums/",
+            "App\\Events\\": "app/Events/",
+            "App\\Exceptions\\": "app/Exceptions/",
+            "App\\Http\\Controllers\\": "app/Http/Controllers/",
+            "App\\Http\\Middleware\\": "app/Http/Middleware/",
+            "App\\Http\\Requests\\": "app/Http/Requests/",
+            "App\\Http\\Resources\\": "app/Http/Resources/",
+            "App\\Jobs\\": "app/Jobs/",
+            "App\\Listeners\\": "app/Listeners/",
+            "App\\Models\\": "app/Models/",
+            "App\\Notifications\\": "app/Notifications/",
+            "App\\Observers\\": "app/Observers/",
+            "App\\Policies\\": "app/Policies/",
+            "App\\Providers\\": "app/Providers/",
+            "App\\Repositories\\": "app/Repositories/",
+            "App\\Rules\\": "app/Rules/",
+            "App\\Services\\": "app/Services/",
+            "App\\Support\\": "app/Support/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/Helpers/tenant.php",
+            "app/Helpers/authorization.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php artisan storage:link --ansi",
+            "npm install",
+            "npm run build"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan serve"
+        ],
+        "dev:full": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan serve & npm run dev & php artisan horizon"
+        ],
+        "lint": [
+            "pint --parallel"
+        ],
+        "lint:check": [
+            "pint --parallel --test"
+        ],
+        "ci:check": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm run lint:check",
+            "npm run format:check",
+            "npm run types:check",
+            "@test"
+        ],
+        "types:check": [
+            "phpstan analyse --memory-limit=2G"
+        ],
+        "test": [
+            "Pest --parallel"
+        ],
+        "test:coverage": [
+            "Pest --coverage"
+        ],
+        "test:type": [
+            "phpstan analyse --memory-limit=2G"
+        ],
+        "analyse": [
+            "@lint:check",
+            "@test:type"
+        ],
+        "ide:generate": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --nowrite",
+            "@php artisan ide-helper:meta"
+        ],
+        "fresh": [
+            "@php artisan migrate:fresh --seed --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "spatie/laravel-package-tools": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
