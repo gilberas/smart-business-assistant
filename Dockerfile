@@ -13,6 +13,9 @@ RUN apk add --no-cache \
     libxml2-dev \
     oniguruma-dev \
     libpq-dev \
+    autoconf \
+    make \
+    g++ \
     nodejs \
     npm
 
